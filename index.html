@@ -41,33 +41,57 @@
             padding: 0;
         }
 
-        #messages li {
+        #messages div {
             padding: 5px 10px;
         }
 
-        #messages li:nth-child(odd) {
+        #messages div:nth-child(odd) {
             background: #eee;
+        }
+
+        #m {
+            width: 80%;
+            float: left;
+        }
+
+        #btn {
+            width: 20%;
+            height: 100%;
+            float: left;
         }
     </style>
 </head>
 <body>
 <ul id="messages"></ul>
 <form action="">
-    <input id="m" autocomplete="off"/>
-    <button>Send</button>
+    <textarea id="m" rows="20" autocomplete="off"></textarea>
+    <button id="btn">Send</button>
 </form>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+    var $m = $('#m');
+
     var socket = io();
     $('form').submit(function () {
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
+        socket.emit('chat message', $m.val());
+        $m.val('').focus();
         return false;
     });
+
     socket.on('chat message', function (msg) {
-        $('#messages').append($('<li>').text(msg));
+        console.log(msg);
+        $('#messages').append($('<div>').text(msg));
     });
+
+    socket.on('limited', function () {
+        alert('하트를 구매하여 주십시오.');
+    });
+
+    $(function () {
+        $m.focus();
+    });
+
 </script>
 </body>
 </html>
