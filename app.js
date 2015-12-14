@@ -18,10 +18,9 @@ io.on('connection', function (socket) {
 
         if (sendLimit[socket.id] && sendLimit[socket.id] > 2) {
             io.emit('limited');
-            return false;
+        } else {
+            io.emit('chat message', msg);
         }
-
-        io.emit('chat message', msg);
     });
 });
 
