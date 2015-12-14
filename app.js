@@ -16,7 +16,7 @@ io.on('connection', function (socket) {
             sendLimit[socket.id]++;
         }
 
-        if (sendLimit[socket.id] > 2) {
+        if (sendLimit[socket.id] && sendLimit[socket.id] > 2) {
             io.emit('limited');
             return false;
         }
