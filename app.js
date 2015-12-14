@@ -12,6 +12,6 @@ io.on('connection', function (socket) {
     });
 });
 
-http.listen(3000, function (req, res) {
+http.listen((process.env.PORT || 3000, function (req, res) {
     console.log('listen on 3000');
 });
