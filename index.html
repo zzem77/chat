@@ -67,20 +67,20 @@
     <textarea id="m" rows="20" autocomplete="off"></textarea>
     <button id="btn">Send</button>
 </form>
-<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="static/socket.io-1.2.0.js"></script>
+<script src="static/jquery-1.11.1.js"></script>
 <script>
     $(function () {
         var $m = $('#m');
 
         var socket = io();
         $('form').submit(function () {
-            socket.emit('chat message', $m.val());
+            socket.emit('chat', $m.val());
             $m.val('').focus();
             return false;
         });
 
-        socket.on('chat message', function (msg) {
+        socket.on('chat', function (msg) {
             console.log(msg);
             $('#messages').append($('<div>').text(msg));
         });
