@@ -70,25 +70,25 @@
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-    var $m = $('#m');
-
-    var socket = io();
-    $('form').submit(function () {
-        socket.emit('chat message', $m.val());
-        $m.val('').focus();
-        return false;
-    });
-
-    socket.on('chat message', function (msg) {
-        console.log(msg);
-        $('#messages').append($('<div>').text(msg));
-    });
-
-    socket.on('limited', function () {
-        alert('하트를 구매하여 주십시오.');
-    });
-
     $(function () {
+        var $m = $('#m');
+
+        var socket = io();
+        $('form').submit(function () {
+            socket.emit('chat message', $m.val());
+            $m.val('').focus();
+            return false;
+        });
+
+        socket.on('chat message', function (msg) {
+            console.log(msg);
+            $('#messages').append($('<div>').text(msg));
+        });
+
+        socket.on('limited', function () {
+            alert('하트를 구매하여 주십시오.');
+        });
+
         $m.focus();
     });
 
