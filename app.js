@@ -19,12 +19,13 @@ io.on('connection', function (socket) {
             sendLimit[socket.id]++;
         }
 
+        console.log('msg', msg);
         io.emit('chat', msg);
-        if (sendLimit[socket.id] && sendLimit[socket.id] > 9) {
-            io.emit('limited');
-        } else {
-            io.emit('chat message', msg);
-        }
+        //if (sendLimit[socket.id] && sendLimit[socket.id] > 9) {
+        //    io.emit('limited');
+        //} else {
+        //    io.emit('chat message', msg);
+        //}
     });
 });
 
